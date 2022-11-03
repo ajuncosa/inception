@@ -10,7 +10,7 @@ RUN curl -o /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.
 RUN mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/
 RUN apk add nginx
 
-COPY ./ajuncosa.42.fr.conf /etc/nginx/conf.d/ 
+COPY ./conf/ajuncosa.42.fr.conf /etc/nginx/conf.d/ 
 
 ENTRYPOINT ["nginx"]
 CMD ["-g", "daemon off;"]
