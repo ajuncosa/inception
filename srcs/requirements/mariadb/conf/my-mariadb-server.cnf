@@ -7,7 +7,10 @@
 # this is only for the mysqld standalone daemon
 [mysqld]
 datadir=/var/lib/mysql
-init-file=/var/lib/mysql/my_init_file.sql
+skip-networking=0
+skip-bind-address
+bind-address=0.0.0.0
+user=mysql
 
 # Galera-related settings
 [galera]
@@ -39,3 +42,4 @@ init-file=/var/lib/mysql/my_init_file.sql
 # If you use the same .cnf file for MariaDB of different versions,
 # use this group for options that older servers don't understand
 [mariadb-10.5]
+
