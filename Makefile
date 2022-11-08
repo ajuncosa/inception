@@ -21,6 +21,6 @@ rebuild:
 clean:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) down
 
-re: clean rebuild start
+re: clean rebuild up
 
-.PHONY: start stop rebuild clean re
+.PHONY: up stop start rebuild clean re
