@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+    mariadb:
+        build: ./requirements/mariadb/.
+        image: mariadb
+        networks:
+            my_network:
+                aliases:
+                    - mariadb 
+
+        #    nginx:
+        #build: ./requirements/nginx/.
+        #image: nginx
+
+    wordpress:
+        build: ./requirements/wordpress/.
+        image: wordpress
+        networks:
+            my_network:
+                aliases:
+                    - wordpress
+
+networks:
+    my_network:
+        name: my_network
