@@ -1,13 +1,9 @@
 COMPOSE_FILE = ./srcs/docker-compose.yml
-MARIADB_SERVICE = mariadb
-WORDPRESS_SERVICE = wordpress
-NGINX_SERVICE = nginx
 
 DOCKER_COMPOSE = docker compose
 
 up:
-	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) up -d $(MARIADB_SERVICE)
-	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) up  $(WORDPRESS_SERVICE)
+	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) up -d
 
 stop:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) stop

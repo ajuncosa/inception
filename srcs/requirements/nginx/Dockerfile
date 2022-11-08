@@ -2,6 +2,7 @@ FROM alpine:3.15
 
 WORKDIR /
 
+RUN apk update
 RUN apk add openssl curl ca-certificates
 RUN printf "%s%s%s\n" "http://nginx.org/packages/alpine/v" \
 `egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release` "/main" \

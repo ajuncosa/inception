@@ -2,6 +2,7 @@ FROM alpine:3.15
 
 WORKDIR /
 
+RUN apk update
 RUN apk add mariadb mariadb-client
 
 RUN mkdir -p /run/mysqld 
