@@ -2,6 +2,10 @@ version: "3.7"
 
 services:
     mariadb:
+        environment:
+            - WP_PASSWORD
+            - MYSQL_PASSWORD
+            - MYSQL_ROOT_PASSWORD
         build: ./requirements/mariadb/.
         image: mariadb
         container_name: mariadb
@@ -48,13 +52,13 @@ volumes:
         driver_opts:
             type: none
             o: bind
-            device: /Users/ajuncosa/Desktop/inception/srcs/tmp_files
+            device: $WP_FILES
     database:
         driver: local
         driver_opts:
             type: none
             o: bind
-            device: /Users/ajuncosa/Desktop/inception/srcs/tmp_files2
+            device: $DB_FILES
 
 networks:
     my_network:

@@ -1,6 +1,7 @@
-COMPOSE_FILE = ./srcs/docker-compose.yml
+COMPOSE_FILE := ./srcs/docker-compose.yml
+VOLUMES := $(shell docker volume ls -q)
 
-DOCKER_COMPOSE = docker-compose
+DOCKER_COMPOSE := docker-compose
 
 up:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) up -d
@@ -17,6 +18,10 @@ rebuild:
 clean:
 	@$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) down
 
+superclean: clean
+	docker system prune -a --volumes -f
+	docker volume rm $(VOLUMES) -f
+
 re: clean rebuild up
 
-.PHONY: up stop start rebuild clean re
+.PHONY: up stop start rebuild clean re superclean
