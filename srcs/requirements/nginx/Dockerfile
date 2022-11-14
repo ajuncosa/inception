@@ -13,6 +13,9 @@ RUN apk add nginx
 
 COPY ./conf/ajuncosa.42.fr.conf /etc/nginx/conf.d/ 
 
+RUN mkdir /etc/nginx/ssl
+RUN openssl req -x509 -nodes -days 365 -subj '/CN=ajuncosa.42.fr' -newkey rsa:2048 -keyout /etc/nginx/ssl/my-selfsigned.key -out /etc/nginx/ssl/my-selfsigned.crt
+
 ENTRYPOINT ["nginx"]
 CMD ["-g", "daemon off;"]
 

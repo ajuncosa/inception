@@ -8,7 +8,7 @@ RUN ln -s /usr/bin/php8 /usr/bin/php
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
-RUN wp core download
+RUN wp core download --path=wordpress/
 RUN sed -i 's/listen = 127.0.0.1:9000/listen = 9000/' /etc/php8/php-fpm.d/www.conf
 COPY ./conf/startup.sh /
 
