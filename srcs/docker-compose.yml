@@ -22,11 +22,17 @@ services:
 
     wordpress:
         environment:
+            - DOMAIN_NAME
             - WP_DB_USER
             - WP_PASSWORD
             - WP_DB_NAME
             - WP_ADMIN_USER
+            - WP_ADMIN_EMAIL
             - WP_ADMIN_PWD
+            - WP_OTHER_USER
+            - WP_OTHER_EMAIL
+            - WP_OTHER_PWD
+            - WP_OTHER_ROLE
             - MARIADB_NET
         build: ./requirements/wordpress/.
         image: wordpress
@@ -43,10 +49,7 @@ services:
                     - $WORDPRESS_NET
 
     nginx:
-        build:
-            context: ./requirements/nginx/.
-            args:
-                - WORDPRESS_NET
+        build: ./requirements/nginx/.
         image: nginx
         container_name: nginx
         ports:
