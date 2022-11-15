@@ -2,6 +2,12 @@ FROM alpine:3.15
 
 WORKDIR /
 
+ARG MYSQL_PASSWORD
+ARG MYSQL_ROOT_PASSWORD
+ARG WP_DB_USER
+ARG WP_PASSWORD
+ARG WP_DB_NAME
+
 RUN apk update
 RUN apk add mariadb mariadb-client
 

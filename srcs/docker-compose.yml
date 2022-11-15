@@ -2,11 +2,15 @@ version: "3.7"
 
 services:
     mariadb:
-        environment:
-            - WP_PASSWORD
-            - MYSQL_PASSWORD
-            - MYSQL_ROOT_PASSWORD
-        build: ./requirements/mariadb/.
+        build:
+            context: ./requirements/mariadb/.
+            args:
+                - MYSQL_PASSWORD
+                - MYSQL_ROOT_PASSWORD
+                - WP_DB_USER
+                - WP_PASSWORD
+                - WP_DB_NAME
+                 
         image: mariadb
         container_name: mariadb
         volumes:
@@ -14,9 +18,16 @@ services:
         networks:
             my_network:
                 aliases:
-                    - mariadb_net 
+                    - $MARIADB_NET
 
     wordpress:
+        environment:
+            - WP_DB_USER
+            - WP_PASSWORD
+            - WP_DB_NAME
+            - WP_ADMIN_USER
+            - WP_ADMIN_PWD
+            - MARIADB_NET
         build: ./requirements/wordpress/.
         image: wordpress
         container_name: wordpress
@@ -29,10 +40,13 @@ services:
         networks:
             my_network:
                 aliases:
-                    - wordpress_net
+                    - $WORDPRESS_NET
 
     nginx:
-        build: ./requirements/nginx/.
+        build:
+            context: ./requirements/nginx/.
+            args:
+                - WORDPRESS_NET
         image: nginx
         container_name: nginx
         ports:
@@ -44,7 +58,7 @@ services:
         networks:
             my_network:
                 aliases:
-                    - nginx_net 
+                    - $NGINX_NET
 
 volumes:
     wp-files:
