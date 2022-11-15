@@ -19,6 +19,7 @@ services:
             my_network:
                 aliases:
                     - $MARIADB_NET
+        restart: always
 
     wordpress:
         environment:
@@ -47,6 +48,7 @@ services:
             my_network:
                 aliases:
                     - $WORDPRESS_NET
+        restart: always
 
     nginx:
         build: ./requirements/nginx/.
@@ -62,6 +64,7 @@ services:
             my_network:
                 aliases:
                     - $NGINX_NET
+        restart: always
 
 volumes:
     wp-files:
